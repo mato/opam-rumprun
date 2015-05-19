@@ -1,0 +1,12 @@
+diff -u lwt-2.4.8.orig/setup.ml lwt-2.4.8/setup.ml
+--- lwt-2.4.8.orig/setup.ml     2015-03-11 10:22:48.000000000 +0100
++++ lwt-2.4.8/setup.ml  2015-05-19 15:21:49.144599689 +0200
+@@ -2192,8 +2192,6 @@
+         begin
+           ["lib"^cs.cs_name^"_stubs"^ext_lib]
+           ::
+-          ["dll"^cs.cs_name^"_stubs"^ext_dll]
+-          ::
+           acc_nopath
+         end
+       else

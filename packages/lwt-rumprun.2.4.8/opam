@@ -1,0 +1,22 @@
+opam-version: "1"
+maintainer: "martin@lucina.net"
+patches: [
+  "patches/oasis-dont-check-for-dlls.patch"
+]
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure"
+    "--prefix" prefix
+    "--disable-libev"
+    "--enable-unix"
+    "--enable-android-target" ]
+  ["ocamlbuild" "-use-ocamlfind" "-just-plugin"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "build"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
+  ["touch" "%{prefix}%/x86_64-rumprun-netbsd/lib/lwt/ppx.cma"]
+]
+remove: [
+  [ "ocamlfind" "-toolchain" "rumprun" "remove" "lwt" ]
+]
+depends: [
+  "ocaml-rumprun"
+]
