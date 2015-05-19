@@ -1,0 +1,20 @@
+opam-version: "1.2"
+author: "Pierre Chambart"
+maintainer: "pierre.chambart@ocamlpro.com"
+homepage: "https://github.com/OCamlPro/ocplib-endian"
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--disable-debug" "--prefix" prefix]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
+]
+install: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+]
+remove: ["ocamlfind -toolchain rumprun" "remove" "ocplib-endian"]
+depends: [
+  "base-bytes"
+  "ocamlfind"
+  "cppo" {>= "0.8"}
+  "ocaml-rumprun"
+]
+dev-repo: "https://github.com/OCamlPro/ocplib-endian.git"
+bug-reports: "https://github.com/OCamlPro/ocplib-endian/issues"
