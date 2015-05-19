@@ -1,0 +1,10 @@
+opam-version: "1"
+maintainer: "martin@lucina.net"
+install: [
+  ["./install.sh" "%{lib}%" "%{prefix}%"]
+]
+remove: [
+  ["rm" "-f" "%{prefix}%/x86_64-rumprun-netbsd/lib/camlp4" "%{prefix}%/x86_64-rumprun-netbsd/lib/ocaml/camlp4"]
+]
+depends: ["ocaml-rumprun" "camlp4"]
+
