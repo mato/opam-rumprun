@@ -1,0 +1,42 @@
+opam-version: "1.2"
+maintainer:   "martin@lucina.net"
+authors:      "Anil Madhavapeddy"
+homepage:     "https://github.com/mirage/ocaml-cstruct"
+license:      "ISC"
+dev-repo:     "https://github.com/mirage/ocaml-cstruct.git"
+bug-reports:  "https://github.com/mirage/ocaml-cstruct/issues"
+tags: [
+  "org:mirage"
+  "org:xapi-project"
+]
+patches: [
+  "patches/oasis-dont-check-for-dlls.patch"
+]
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "./configure"
+      "--prefix" prefix
+      "--%{lwt-rumprun:enable}%-lwt"
+      "--%{camlp4-rumprun:enable}%-camlp4"
+      "--%{async-rumprun:enable}%-async"
+      "--%{base-unix:enable}%-unix"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
+remove:  ["ocamlfind" "-toolchain" "rumprun" "remove" "cstruct"]
+depends: [
+  "ocamlfind" {build}
+  "type_conv-rumprun" {build}
+  "ocplib-endian-rumprun"
+  "sexplib-rumprun"
+  "ocaml-rumprun"
+]
+depopts: [
+  "camlp4-rumprun"
+  "async-rumprun"
+  "lwt-rumprun"
+]
+available: [ocaml-version >= "4.01.0"]
+depexts: [
+  [ ["debian"] ["time"] ]
+  [ ["ubuntu"] ["time"] ]
+]

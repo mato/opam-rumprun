@@ -1,0 +1,11 @@
+--- setup.ml.orig	2015-05-20 12:47:04.651762743 +0200
++++ setup.ml	2015-05-20 12:47:21.633763847 +0200
+@@ -2185,8 +2185,6 @@
+         begin
+           ["lib"^cs.cs_name^"_stubs"^ext_lib]
+           ::
+-          ["dll"^cs.cs_name^"_stubs"^ext_dll]
+-          ::
+           acc_nopath
+         end
+       else
