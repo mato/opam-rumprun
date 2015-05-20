@@ -1,0 +1,23 @@
+opam-version: "1.2"
+maintainer:    "martin@lucina.net"
+homepage:      "https://github.com/mirage/mirage-console"
+bug-reports:   "https://github.com/mirage/mirage-console/issues"
+dev-repo:      "https://github.com/mirage/mirage-console.git"
+authors: [
+  "Anil Madhavapeddy"
+  "David Scott"
+]
+tags: [
+  "org:mirage"
+  "org:xapi-project"
+]
+build: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make
+         "PREFIX=%{prefix}%" ]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install" "PREFIX=%{prefix}%"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "mirage-console"]
+depends: [
+  "ocamlfind" {build}
+  "mirage-types-lwt-rumprun"
+  "cmdliner-rumprun"
+  "mirage-unix-rumprun" {>="1.1.0"}
+]
