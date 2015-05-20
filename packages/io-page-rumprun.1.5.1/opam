@@ -1,0 +1,29 @@
+opam-version: "1.2"
+maintainer:   "martin@lucina.net"
+homepage:     "https://github.com/mirage/io-page"
+dev-repo:     "https://github.com/mirage/io-page.git"
+bug-reports:  "https://github.com/mirage/io-page/issues"
+authors: [
+  "Anil Madhavapeddy"
+  "Dave Scott"
+  "Thomas Gazagnaire"
+]
+tags: ["org:mirage"]
+patches: [
+  "patches/oasis-dont-check-for-dlls.patch"
+]
+# XXX setting OCAMLFIND_TOOLCHAIN at the configure phase correctly sets
+# has_native_dynlink to false so this package doesn't need a patch for that,
+# assuming this doesn't break anything else.
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "./configure" "--prefix" prefix ]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "io-page"]
+depends: [
+  "ocamlfind"
+  "cstruct-rumprun" {>="1.1.0"}
+  "ounit" {test}
+]
+available: [ocaml-version >= "4.00.0"]
