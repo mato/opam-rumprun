@@ -1,0 +1,17 @@
+opam-version: "1.2"
+maintainer: "martin@lucina.net"
+authors: "The MirageOS team"
+homepage: "https://github.com/mirage/mirage-platform"
+bug-reports: "https://github.com/mirage/mirage-platform/issues/"
+dev-repo: "https://github.com/mirage/mirage-platform.git"
+build: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "unix-build"]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "unix-install" "PREFIX=%{prefix}%"]
+remove: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "unix-uninstall" "PREFIX=%{prefix}%"]
+depends: [
+  "cstruct-rumprun" {>= "1.0.1"}
+  "ocamlfind"
+  "lwt-rumprun" {>= "2.4.3"}
+  "io-page-rumprun" {>= "1.5.0"}
+  "mirage-clock-unix-rumprun" {>= "1.0.0"}
+]
+available: [ocaml-version >= "4.01.0"]
