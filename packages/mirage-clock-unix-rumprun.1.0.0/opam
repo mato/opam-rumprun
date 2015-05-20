@@ -1,0 +1,15 @@
+opam-version: "1"
+maintainer: "martin@lucina.net"
+tags: [
+  "org:mirage"
+  "org:xapi-project"
+]
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "unix-build"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "unix-install"]
+]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "mirage-clock-unix"]
+depends: [
+  "ocamlfind"
+  "mirage-types-rumprun" {>= "0.3.0"}
+]
