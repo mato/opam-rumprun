@@ -1,0 +1,15 @@
+opam-version: "1"
+maintainer: "martin@lucina.net"
+tags: [
+  "org:mirage"
+  "org:xapi-project"
+]
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install-types"]
+]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "mirage-types"]
+depends: ["ocamlfind" "sexplib-rumprun"]
+depopts: [
+ ("lwt-rumprun" & "cstruct-rumprun" & "io-page-rumprun" & "ipaddr-rumprun" {>= "2.0.0"})
+]
+ocaml-version: [>="4.01.0"]
