@@ -12,8 +12,8 @@ build: [
   ["ocamlbuild" "-use-ocamlfind" "-just-plugin"]
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "build"]
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
-  ["touch" "%{prefix}%/x86_64-rumprun-netbsd/lib/lwt/ppx.cma"]
-  ["find" lwt:lib "-name" "lwt-syntax*" "-exec" "ln" "-sf" "{}" "%{prefix}%/x86_64-rumprun-netbsd/lib/lwt/" ";"]
+  ["touch" "%{ocaml-rumprun-prefix}%/lib/lwt/ppx.cma"]
+  ["find" lwt:lib "-name" "lwt-syntax*" "-exec" "ln" "-sf" "{}" "%{ocaml-rumprun-prefix}%/lib/lwt/" ";"]
 ]
 remove: [
   [ "ocamlfind" "-toolchain" "rumprun" "remove" "lwt" ]
