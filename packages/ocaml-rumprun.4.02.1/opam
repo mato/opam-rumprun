@@ -1,15 +1,13 @@
 opam-version: "1"
 maintainer: "martin@lucina.net"
-substs: ["rumprun.conf" "config/Makefile"]
 patches: [
   "patches/0002-Add-crude-cross-compiling-support.patch"
 ]
 build: [
-  [make "world" "opt" "install"]
-  ["./install.sh" "%{prefix}%"]
+  ["./install.sh" "%{prefix}%" "%{bin}%"]
 ]
 remove: [
-  ["./remove.sh" "%{prefix}%"]
+  ["./remove.sh" "%{prefix}%" "%{bin}%"]
 ]
 depends: [
   "ocamlfind" {>= "1.5.4"}

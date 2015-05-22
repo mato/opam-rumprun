@@ -4,7 +4,7 @@
 # N.B.: threads and dynlink must be removed from OTHERLIBRARIES,
 #       debugger, doc and ocamlbuild must be disabled for the build 
 #       to complete.
-PREFIX=%{prefix}%/x86_64-rumprun-netbsd
+PREFIX=@OPAM_PREFIX@/@RUMPRUN_PLATFORM@
 BINDIR=$(PREFIX)/bin
 LIBDIR=$(PREFIX)/lib/ocaml
 STUBLIBDIR=$(LIBDIR)/stublibs
@@ -26,7 +26,7 @@ PTHREAD_CAML_LINK=-cclib -lpthread
 X11_INCLUDES=not found
 X11_LINK=not found
 LIBBFD_LINK=
-BYTECC=rumprun-xen-cc
+BYTECC=@RUMPRUN_CC@
 BYTECCCOMPOPTS=-fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
 BYTECCLINKOPTS=
 BYTECCLIBS= -lm   -lpthread
@@ -45,14 +45,14 @@ MKLIB=ar rc $(1) $(2); ranlib $(1)
 ARCH=amd64
 MODEL=default
 SYSTEM=netbsd
-NATIVECC=rumprun-xen-cc
+NATIVECC=@RUMPRUN_CC@
 NATIVECCCOMPOPTS=-Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
 NATIVECCPROFOPTS=-Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
 NATIVECCLINKOPTS=
 NATIVECCRPATH=
 NATIVECCLIBS= -lm 
 ASM=as
-ASPP=rumprun-xen-cc -c
+ASPP=@RUMPRUN_CC@ -c
 ASPPPROFFLAGS=-DPROFILING
 PROFILING=noprof
 DYNLINKOPTS=
@@ -85,4 +85,4 @@ WITH_OCAMLDOC=
 WITH_OCAMLBUILD=
 ASM_CFI_SUPPORTED=true
 WITH_FRAME_POINTERS=false
-TARGET=x86_64-rumprun-netbsd7.0.
+TARGET=@RUMPRUN_PLATFORM@

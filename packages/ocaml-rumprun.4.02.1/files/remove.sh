@@ -1,10 +1,19 @@
-#!/bin/sh -e
+#!/bin/sh
+if [ $# -ne 2 ]; then
+    echo "ERROR: usage: remove.sh OPAM_PREFIX OPAM_BIN" 1>&2
+    exit 1
+fi
+OPAM_PREFIX="$1"
+OPAM_BIN="$2"
 
-PREFIX="$1"
+RUMPRUN_PREFIX=$(ocaml-rumprun-prefix)
+if [ -z "${RUMPRUN_PREFIX}" -o ! -d "${RUMPRUN_PREFIX}" ]; then
+    echo "WARNING: could not determine toolchain-specific prefix." 1>&2
+    echo "WARNING: not fully installed? not removing anything." 1>&2
+    exit 0
+fi
 
-for bin in ocaml ocamlbuild ocamlbuild.byte ocamlc ocamlcp ocamldebug ocamldep ocamldoc ocamllex ocamlmklib ocamlmktop ocamlobjinfo ocamlopt ocamloptp ocamlprof ocamlrun ocamlyacc; do
-  rm -f "${PREFIX}/x86_64-rumprun-netbsd/bin/${bin}"
-done
+rm -rf ${RUMPRUN_PREFIX}
+rm -f ${OPAM_PREFIX}/lib/findlib.conf.d/rumprun.conf
+rm -f ${OPAM_BIN}/ocaml-rumprun-prefix
 
-rm -rf "${PREFIX}/x86_64-rumprun-netbsd/lib/ocaml"
-rm -rf "${PREFIX}/lib/findlib.conf.d/rumprun.conf"
