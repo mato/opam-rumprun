@@ -12,5 +12,6 @@ depends: [
   "io-page-rumprun" {>="1.4.0"}
   "ipaddr-rumprun"
   "mirage-types-rumprun" {>="2.3.0"}
+  "ocaml-rumprun"
 ]
 ocaml-version: [>="4.01.0"]
