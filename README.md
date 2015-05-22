@@ -14,23 +14,26 @@ OCaml 4.02 toolchain for [rumprun](http://repo.rumpkernel.org/rumprun).
   [instructions](http://wiki.rumpkernel.org/Repo%3A-rumprun#xen) and the
   `app-tools` directory on your `$PATH`.
 * Add this repository to your OPAM installation:
-
+````
     opam repository add rumprun git://github.com/mato/opam-rumprun
+````
 
 ## Pure OCaml "Hello, World"
 
 1. Install the `ocaml-rumprun` package, specifying `RUMPRUN_PLATFORM` as either `rumprun-bmk` (baremetal / KVM / QEMU) or `rumprun-xen` (Xen).
-
+````
     RUMPRUN_PLATFORM=rumprun-bmk opam install ocaml-rumprun
+````
 
 2. Build a native "Hello, World!"
-
+````
     echo 'let () = print_endline "Hello, World!" > hello.ml
     ocamlfind -toolchain rumprun ocamlopt hello.ml -o hello
-
+````
 3. Run it using (for example) KVM (root required):
-
+````
     rumprun kvm -i ./hello
+````
 
 ## Mirage on bare metal "Hello, World"
 
