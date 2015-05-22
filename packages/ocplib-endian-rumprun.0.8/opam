@@ -9,7 +9,7 @@ build: [
 install: [
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
 ]
-remove: ["ocamlfind -toolchain rumprun" "remove" "ocplib-endian"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "ocplib-endian"]
 depends: [
   "base-bytes"
   "ocamlfind"
