@@ -11,8 +11,7 @@ tags: [
   "org:mirage"
   "org:xapi-project"
 ]
-build: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make
-         "PREFIX=%{prefix}%" ]
+build: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "PREFIX=%{prefix}%" ]
 install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install" "PREFIX=%{prefix}%"]
 remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "mirage-console"]
 depends: [
@@ -20,4 +19,5 @@ depends: [
   "mirage-types-lwt-rumprun"
   "cmdliner-rumprun"
   "mirage-unix-rumprun" {>="1.1.0"}
+  "ocaml-rumprun"
 ]
