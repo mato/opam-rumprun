@@ -13,7 +13,7 @@ build: [
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "build"]
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
   ["touch" "%{ocaml-rumprun-prefix}%/lib/lwt/ppx.cma"]
-  ["find" lwt:lib "-name" "lwt-syntax*" "-exec" "ln" "-sf" "{}" "%{ocaml-rumprun-prefix}%/lib/lwt/" ";"]
+  ["ocaml-rumprun-hostpackage" "install-files" "lwt" "-name" "lwt-syntax*"]
 ]
 remove: [
   [ "ocamlfind" "-toolchain" "rumprun" "remove" "lwt" ]
