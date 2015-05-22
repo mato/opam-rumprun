@@ -1,10 +1,6 @@
 #!/bin/sh -e
-if [ $# -ne 2 ]; then
-    echo "ERROR: usage: install.sh OPAM_PREFIX OPAM_BIN" 1>&2
-    exit 1
-fi
-OPAM_PREFIX="$1"
-OPAM_BIN="$2"
+OPAM_PREFIX="$(opam config var prefix)"
+OPAM_BIN="$(opam config var bin)"
 
 # Check that the rumprun platform has been specified, and that its compiler is
 # available.
@@ -49,11 +45,10 @@ done
 mkdir -p "${OPAM_PREFIX}/lib/findlib.conf.d"
 cp rumprun.conf "${OPAM_PREFIX}/lib/findlib.conf.d"
 
-# Install a `ocaml-rumprun-prefix' script to record the prefix used for this
+# Install a `ocaml-rumprun-prefix' variable to record the prefix used for this
 # toolchain installation; this is used by cross builds of packages.
-cat <<EOM >${OPAM_BIN}/ocaml-rumprun-prefix
-#!/bin/sh
-echo ${OPAM_PREFIX}/${RUMPRUN_PLATFORM}
-EOM
-chmod +x ${OPAM_BIN}/ocaml-rumprun-prefix
+# XXX This should be installed in the opam.config file for ocaml-rumprun, but 
+# that gets overwritten by OPAM. so we abuse the global config instead.
+echo "ocaml-rumprun-prefix: \"${OPAM_PREFIX}/${RUMPRUN_PLATFORM}\"" \
+    >>${OPAM_PREFIX}/config/global-config.config
 

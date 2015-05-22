@@ -1,12 +1,8 @@
 #!/bin/sh
-if [ $# -ne 2 ]; then
-    echo "ERROR: usage: remove.sh OPAM_PREFIX OPAM_BIN" 1>&2
-    exit 1
-fi
-OPAM_PREFIX="$1"
-OPAM_BIN="$2"
+OPAM_PREFIX="$(opam config var prefix)"
+OPAM_BIN="$(opam config var bin)"
 
-RUMPRUN_PREFIX=$(ocaml-rumprun-prefix)
+RUMPRUN_PREFIX="$(opam config var ocaml-rumprun-prefix)"
 if [ -z "${RUMPRUN_PREFIX}" -o ! -d "${RUMPRUN_PREFIX}" ]; then
     echo "WARNING: could not determine toolchain-specific prefix." 1>&2
     echo "WARNING: not fully installed? not removing anything." 1>&2
@@ -15,5 +11,7 @@ fi
 
 rm -rf ${RUMPRUN_PREFIX}
 rm -f ${OPAM_PREFIX}/lib/findlib.conf.d/rumprun.conf
-rm -f ${OPAM_BIN}/ocaml-rumprun-prefix
+
+# "unset" the ocaml-rumprun-prefix global variable created by install.sh
+sed -i '/^ocaml-rumprun-prefix:/d' ${OPAM_PREFIX}/config/global-config.config
 

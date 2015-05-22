@@ -4,10 +4,10 @@ patches: [
   "patches/0002-Add-crude-cross-compiling-support.patch"
 ]
 build: [
-  ["./install.sh" "%{prefix}%" "%{bin}%"]
+  ["./install.sh"]
 ]
 remove: [
-  ["./remove.sh" "%{prefix}%" "%{bin}%"]
+  ["./remove.sh"]
 ]
 depends: [
   "ocamlfind" {>= "1.5.4"}
