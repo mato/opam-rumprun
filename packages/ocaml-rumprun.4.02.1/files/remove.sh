@@ -11,6 +11,7 @@ fi
 
 rm -rf ${RUMPRUN_PREFIX}
 rm -f ${OPAM_PREFIX}/lib/findlib.conf.d/rumprun.conf
+rm -f ${OPAM_BIN}/ocaml-rumprun-hostpackage
 
 # "unset" the ocaml-rumprun-prefix global variable created by install.sh
 sed -i '/^ocaml-rumprun-prefix:/d' ${OPAM_PREFIX}/config/global-config.config

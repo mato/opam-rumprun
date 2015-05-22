@@ -45,6 +45,10 @@ done
 mkdir -p "${OPAM_PREFIX}/lib/findlib.conf.d"
 cp rumprun.conf "${OPAM_PREFIX}/lib/findlib.conf.d"
 
+# Install the ocaml-rumprun-hostpackage script.
+cp ocaml-rumprun-hostpackage.sh ${OPAM_BIN}/ocaml-rumprun-hostpackage
+chmod +x ${OPAM_BIN}/ocaml-rumprun-hostpackage
+
 # Install a `ocaml-rumprun-prefix' variable to record the prefix used for this
 # toolchain installation; this is used by cross builds of packages.
 # XXX This should be installed in the opam.config file for ocaml-rumprun, but 
