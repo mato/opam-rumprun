@@ -1,14 +1,33 @@
 #!/bin/sh
-
+set -x
 usage()
 {
-    echo "ERROR: usage: ocaml-rumprun-hostpackage [ install | remove ]  PACKAGE" 1>&2
+    cat <<EOM 1>&2
+ERROR: usage: ocaml-rumprun-hostpackage COMMAND ARGUMENTS
+
+    COMMAND is:
+
+    install PACKAGE
+
+    installs the host package PACKAGE into the rumprun toolchain
+
+    remove PACKAGE
+    
+    removes the host package PACKAGE from the rumprun toolchain
+
+    install-files PACKAGE FINDSPEC...
+
+    installs the files specified in FINDSPEC (passed to 'find' command as
+    predicates) from host package PACKAGE into the rumprun toolchain.
+    Intended for installing syntax plugins.
+
+EOM
     exit 1
 }
 
-[ $# -ne 2 ] && usage
-CMD="$1"
-PACKAGE="$2"
+[ $# -lt 2 ] && usage
+CMD="$1"; shift
+PACKAGE="$1"; shift
 OPAM_LIB="$(opam config var lib)"
 RUMPRUN_PREFIX="$(opam config var ocaml-rumprun-prefix)"
 
@@ -22,6 +41,10 @@ case ${CMD} in
         ;;
     remove)
         rm -f ${RUMPRUN_PREFIX}/lib/${PACKAGE} ${RUMPRUN_PREFIX}/lib/ocaml/${PACKAGE}
+        ;;
+    install-files)
+        [ $# -lt 1 ] && usage
+        find $(opam config var ${PACKAGE}:lib) "$@" -exec ln -sf '{}' ${RUMPRUN_PREFIX}/lib/${PACKAGE}/ \; || exit 1
         ;;
     *)
         usage
