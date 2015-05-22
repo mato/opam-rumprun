@@ -8,7 +8,7 @@ build: [
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install-types"]
 ]
 remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "mirage-types"]
-depends: ["ocamlfind" "sexplib-rumprun"]
+depends: ["ocamlfind" "sexplib-rumprun" "ocaml-rumprun"]
 depopts: [
  ("lwt-rumprun" & "cstruct-rumprun" & "io-page-rumprun" & "ipaddr-rumprun" {>= "2.0.0"})
 ]
