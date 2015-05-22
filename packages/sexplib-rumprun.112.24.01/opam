@@ -1,22 +1,23 @@
 opam-version: "1"
 maintainer: "martin@lucina.net"
-patches: [
-  "patches/oasis-disable-dynlink.patch"
-]
 build: [
-  ["ocaml" "setup.ml" "-configure" "--prefix" "%{prefix}%/x86_64-rumprun-netbsd" "--disable-syntax"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--disable-syntax"]
   ["ocamlbuild" "-use-ocamlfind" "-just-plugin"]
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
-  ["find" sexplib:lib "-name" "pa_sexp_conv.*" "-exec" "ln" "-sf" "{}" "%{prefix}%/x86_64-rumprun-netbsd/lib/sexplib/" ";"] { type_conv-rumprun:installed }
+  ["ocaml-rumprun-hostpackage" "install-files" "sexplib" "-name" "pa_sexp_conv.*"]
 ]
 remove: [
   ["ocamlfind" "-toolchain" "rumprun" "remove" "sexplib"]
   ["ocamlfind" "-toolchain" "rumprun" "remove" "sexplib_num"]
   ["ocamlfind" "-toolchain" "rumprun" "remove" "sexplib_unix"]
 ]
-depends: ["ocamlfind" "ocaml-rumprun" "sexplib" {= "112.24.01"}]
-depopts: ["type_conv-rumprun"]
+depends: [
+          "ocamlfind"
+          "sexplib" {= "112.24.01"}
+          "type_conv-rumprun"
+          "ocaml-rumprun"
+]
 conflicts: [
   "type_conv" {< "112.01.00"}
   "type_conv" {>= "112.02.00"}

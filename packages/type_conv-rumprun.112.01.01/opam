@@ -1,11 +1,15 @@
 opam-version: "1"
 maintainer: "martin@lucina.net"
 build: [
-  ["ln" "-sf" "%{lib}%/type_conv" "%{prefix}%/x86_64-rumprun-netbsd/lib/type_conv" ]
+  [ "ocaml-rumprun-hostpackage" "install" "type_conv" ]
 ]
 remove: [
-  ["rm" "-f" "%{prefix}%/x86_64-rumprun-netbsd/lib/type_conv"]
+  [ "ocaml-rumprun-hostpackage" "remove" "type_conv" ]
 ]
-depends: ["ocamlfind" {>= "1.3.2"}
-          "camlp4-rumprun" "ocaml-rumprun" "type_conv"]
+depends: [
+          "ocamlfind" {>= "1.3.2"}
+          "camlp4-rumprun"
+          "type_conv"
+          "ocaml-rumprun"
+]
 ocaml-version: [>= "4.02.0"]
