@@ -37,7 +37,7 @@ Run it using (for example) KVM (root required):
 ## Mirage on bare metal "Hello, World"
 
 1. `opam install mirage`. Verify that version `2.4.0+rumprun` is installed.
-2. Clone the `github.com:mirage/mirage-skeleton` repository.
+2. Clone the `https://github.com/mirage/mirage-skeleton` repository.
 3. `cd mirage-skeleton/console`
 4. `mirage configure --target rumprun`
 5. `make depend && make`
