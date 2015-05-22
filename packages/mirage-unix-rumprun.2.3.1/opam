@@ -13,5 +13,6 @@ depends: [
   "lwt-rumprun" {>= "2.4.3"}
   "io-page-rumprun" {>= "1.5.0"}
   "mirage-clock-unix-rumprun" {>= "1.0.0"}
+  "ocaml-rumprun"
 ]
 available: [ocaml-version >= "4.01.0"]
