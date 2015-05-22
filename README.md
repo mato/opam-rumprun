@@ -11,7 +11,7 @@ OCaml 4.02 toolchain for [rumprun](http://repo.rumpkernel.org/rumprun).
   platform, ensure that you are using a _32-bit OCaml compiler_ matching the
   version of `ocaml-rumprun`. `opam switch 4.02.1+32bit` should do the trick.
 * A rumprun toolchain, installed according to the
-  [instructions](http://wiki.rumpkernel.org/Repo%3A-rumprun#xen) and the
+  [instructions](http://wiki.rumpkernel.org/Repo%3A-rumprun) and the
   `app-tools` directory on your `$PATH`.
 * Add this repository to your OPAM installation:
 ````
