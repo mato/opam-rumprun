@@ -1,0 +1,31 @@
+opam-version: "1.2"
+version: "0.4"
+available: [ ocaml-version >= "4.00" ]
+maintainer: "martin@lucina.net"
+authors: "Thomas Leonard <talex5@gmail.com>"
+homepage: "https://github.com/mirage/mirage-profile"
+bug-reports: "https://github.com/mirage/mirage-profile"
+license: "BSD-2-clause"
+patches: [
+  "patches/oasis-dont-check-for-dlls.patch"
+]
+build: [
+	[ "env" "OCAMLFIND_TOOLCHAIN=rumprun"
+          "./configure"
+	  "--prefix" prefix
+	  "--%{mirage-xen-minios:enable}%-xen"
+	]
+	["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
+remove: ["ocamlfind" "remove" "-toolchain" "rumprun" "mirage-profile"]
+depends: [
+  "ocamlfind" {build}
+  "cstruct-rumprun"
+  "ocplib-endian-rumprun"
+  "io-page-rumprun"
+  "lwt-rumprun"
+]
+depopts: [
+	"mirage-xen-minios"
+]
