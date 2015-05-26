@@ -5,17 +5,18 @@ homepage:     "https://github.com/mirage/mirage-block-unix"
 dev-repo:     "https://github.com/mirage/mirage-block-unix.git"
 bug-reports:  "https://github.com/mirage/mirage-block-unix/issues"
 build: [
-    ["ocaml" "setup.ml" "-configure" "--prefix" "%{prefix}%/x86_64-rumprun-netbsd" "--disable-tests" "--override" "native_dynlink" "false"]
+    ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--disable-tests" "--override" "native_dynlink" "false"]
     ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build" ]
 ]
 install: [ ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"] ]
 remove: [["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-uninstall"]]
 depends: [
-  "cstruct-rumprun" {>= "1.0.1"}
   "ocamlfind"
+  "cstruct-rumprun" {>= "1.0.1"}
   "lwt-rumprun" {>= "2.4.3"}
   "mirage-types-rumprun" {>= "1.1.0"}
   "io-page-rumprun" {>= "1.0.0"}
   "ounit"
+  "ocaml-rumprun"
 ]
 available: [ ocaml-version >= "4.00.0" ]
