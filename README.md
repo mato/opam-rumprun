@@ -43,5 +43,19 @@ Run it using (for example) KVM (root required):
 5. `make depend && make`
 6. `rumprun kvm -i ./mir-console`
 
-*NOTE*: Only the Mirage Console and Clock drivers are functional at the moment.
+## Mirage network stack example
+
+1. `cd mirage-skeleton/stackv4`
+2. `NET=socket mirage configure --target rumprun`
+3. `make depend && make`
+4. `rumprun kvm -i ./mir-stackv4`
+
+## Mirage drivers ported to rumprun
+
+Currently the following Mirage drivers are ported and working on rumprun:
+
+* Console
+* Clock
+* Block
+* STACKV4\_socket
 
