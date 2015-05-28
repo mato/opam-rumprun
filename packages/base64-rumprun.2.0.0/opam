@@ -1,0 +1,25 @@
+opam-version: "1.2"
+maintainer: "martin@lucina.net"
+authors: [ "Thomas Gazagnaire"
+           "Anil Madhavapeddy"
+           "Peter Zotov" ]
+license: "ISC"
+homepage: "https://github.com/mirage/ocaml-base64"
+doc: "http://mirage.github.io/ocaml-bytes"
+bug-reports: "https://github.com/mirage/ocaml-base64/issues"
+dev-repo: "git://github.com/mirage/ocaml-base64.git"
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--prefix" prefix]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+]
+build-doc: [
+  ["ocaml" "setup.ml" "-doc"]
+]
+remove: [
+  ["ocamlfind" "-toolchain" "rumprun" "remove" "base64"]
+]
+depends: [
+  "ocamlfind"  {build}
+  "base-bytes"
+]
