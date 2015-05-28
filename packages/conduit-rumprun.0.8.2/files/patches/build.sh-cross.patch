@@ -1,0 +1,31 @@
+diff -u a/build.sh b/build.sh
+--- a/build.sh	2015-05-28 19:42:57.430027202 +0200
++++ b/build.sh	2015-05-28 19:42:59.727027351 +0200
+@@ -28,7 +28,7 @@
+ HAVE_XEN=`ocamlfind query mirage-xen xenstore_transport 2>/dev/null || true`
+ 
+ add_target () {
+-  TARGETS="$TARGETS lib/$1.cmxs lib/$1.cma lib/$1.cmxa"
++  TARGETS="$TARGETS lib/$1.cma lib/$1.cmxa"
+ }
+ 
+ add_pkg () {
+@@ -147,6 +147,7 @@
+ 
+ REQS=`echo $PKG $ASYNC_REQUIRES $LWT_REQUIRES $LWT_UNIX_REQUIRES $LWT_MIRAGE_REQUIRES $LWT_MIRAGE_XEN_REQUIRES $VCHAN_LWT_REQUIRES | tr -s ' '`
+ 
++(unset OCAMLFIND_TOOLCHAIN; ocamlbuild -use-ocamlfind -just-plugin)
+ ocamlbuild -use-ocamlfind -classic-display -no-links -j ${J_FLAG} -tag ${TAGS} \
+   -cflags "-w A-4-33-40-41-42-43-34-44" \
+   -pkgs `echo $REQS | tr ' ' ','` \
+@@ -165,8 +166,8 @@
+ 
+ if [ "$1" = "true" ]; then
+   B=_build/lib/
+-  ls $B/*.cmi $B/*.cmt $B/*.cmti $B/*.cmx $B/*.cmxa $B/*.cma $B/*.cmxs $B/*.a > _install/lib
++  ls $B/*.cmi $B/*.cmt $B/*.cmti $B/*.cmx $B/*.cmxa $B/*.cma $B/*.a > _install/lib
+   ocamlfind remove conduit || true
+-  FILES=`ls -1 lib/intro.html $B/*.mli $B/*.cmi $B/*.cmt $B/*.cmti $B/*.cmx $B/*.cmxa $B/*.cma $B/*.cmxs $B/*.a 2>/dev/null || true`
++  FILES=`ls -1 lib/intro.html $B/*.mli $B/*.cmi $B/*.cmt $B/*.cmti $B/*.cmx $B/*.cmxa $B/*.cma $B/*.a 2>/dev/null || true`
+   ocamlfind install conduit META $FILES
+ fi
