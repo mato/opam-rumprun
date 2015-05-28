@@ -1,0 +1,15 @@
+opam-version: "1"
+maintainer: "anil@recoil.org"
+build: [ 
+  [ "ocamlfind" "-toolchain" "rumprun" "query" "dns.mirage" ]
+]
+remove: []
+depends: [
+  "ocamlfind"
+  "dns-rumprun" {>= "0.11.0" }
+  "tcpip-rumprun"
+  "mirage-types-lwt-rumprun" {>= "2.0.0"}
+  "lwt-rumprun" {>= "2.4.3"}
+  "cstruct-rumprun" {>= "1.0.0"}
+]
+ocaml-version: [>= "4.01.0"]
