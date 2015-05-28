@@ -1,0 +1,32 @@
+opam-version: "1.2"
+maintainer:   "martin@lucina.net"
+authors:      "Rudi Grinberg"
+homepage:     "https://github.com/rgrinberg/stringext"
+bug-reports:  "https://github.com/rgrinberg/stringext/issues"
+license:      "MIT"
+dev-repo:     "https://github.com/rgrinberg/stringext.git"
+
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
+]
+
+build-test: [
+  ["ocaml" "setup.ml" "-configure" "--enable-tests"]
+  ["ocaml" "setup.ml" "-build"]
+  ["ocaml" "setup.ml" "-test"]
+]
+
+build-doc: ["ocaml" "setup.ml" "-doc"]
+
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "stringext"]
+
+depends: [
+  "ocamlfind" {build}
+  "base-bytes"
+  "ocaml-rumprun"
+]
+
+available: [ocaml-version >= "4.00.0"]
