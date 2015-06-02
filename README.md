@@ -28,7 +28,7 @@ Build a native "Hello, World!":
 ````
     echo 'let () = print_endline "Hello, World!" > hello.ml
     ocamlfind -toolchain rumprun ocamlopt hello.ml -o hello
-    rumpbake -T hw_virtio -o hello.bin hello
+    rumpbake hw_virtio hello.bin hello
 ````
 Run it using (for example) KVM (root may berequired):
 ````
@@ -42,7 +42,7 @@ Run it using (for example) KVM (root may berequired):
 3. `cd mirage-skeleton/console`
 4. `mirage configure --target rumprun`
 5. `make depend && make`
-6. `rumpbake -T hw_virtio -o mir-console.bin mir-console`
+6. `rumpbake hw_virtio mir-console.bin mir-console`
 7. `rumprun kvm -i ./mir-console.bin`
 
 ## Mirage network stack example
@@ -50,7 +50,7 @@ Run it using (for example) KVM (root may berequired):
 1. `cd mirage-skeleton/stackv4`
 2. `NET=socket mirage configure --target rumprun`
 3. `make depend && make`
-4. `rumpbake -T hw_virtio -o mir-stackv4.bin mir-stackv4`
+4. `rumpbake hw_virtio mir-stackv4.bin mir-stackv4`
 5. `rumprun kvm -i [network configuration...] ./mir-stackv4.bin`
 
 ## Mirage drivers ported to rumprun
