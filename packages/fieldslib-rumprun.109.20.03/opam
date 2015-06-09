@@ -1,0 +1,17 @@
+opam-version: "1"
+maintainer: "opensource@janestreet.com"
+authors: ["Jane Street Capital LLC <opensource@janestreet.com>"]
+homepage: "https://github.com/janestreet/fieldslib"
+license: "Apache-2.0"
+build: [
+  ["ocamlbuild" "-use-ocamlfind" "-just-plugin"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
+]
+remove: [["ocamlfind" "-toolchain" "rumprun" "remove" "fieldslib"]]
+depends: ["camlp4-rumprun"
+          "ocamlfind" {>= "1.3.2"}
+          "type_conv-rumprun" {>= "109.20.00" & < "112.02.00"}
+          "ocaml-rumprun"
+         ]
+ocaml-version: [>= "4.00.0"]
