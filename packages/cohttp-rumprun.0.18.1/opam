@@ -1,0 +1,54 @@
+opam-version: "1.2"
+maintainer: "anil@recoil.org"
+authors: [
+  "Anil Madhavapeddy"
+  "Stefano Zacchiroli"
+  "David Sheets"
+  "Thomas Gazagnaire"
+  "David Scott"
+  "Rudi Grinberg"
+  "Andy Ray"
+]
+homepage: "https://github.com/mirage/ocaml-cohttp"
+bug-reports: "https://github.com/mirage/ocaml-cohttp/issues"
+license: "ISC"
+tags: [
+  "org:mirage"
+  "org:xapi-project"
+]
+dev-repo: "https://github.com/mirage/ocaml-cohttp.git"
+build: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "PREFIX=%{prefix}%" "build"]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "PREFIX=%{prefix}%" "install"]
+build-test: [
+  ["ocaml" "setup.ml" "-configure" "--enable-tests"]
+  ["ocaml" "setup.ml" "-build"]
+  ["ocaml" "setup.ml" "-test"]
+]
+build-doc: ["ocaml" "setup.ml" "-doc"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "cohttp"]
+depends: [
+  "base-bytes"
+  "ocamlfind" {build}
+  "cmdliner-rumprun" {build & >= "0.9.4"}
+  "re-rumprun"
+  "uri-rumprun" {>= "1.9.0"}
+  "fieldslib-rumprun" {>= "109.20.00"}
+  "sexplib-rumprun" {>= "109.53.00"}
+  "conduit-rumprun" {>= "0.7.0"}
+  "stringext-rumprun"
+  "base64-rumprun" {>= "2.0.0"}
+  "magic-mime-rumprun"
+  "ocaml-rumprun"
+  "ounit" {test}
+  "alcotest" {test}
+]
+depopts: [
+  "async"
+  "lwt-rumprun"
+  "js_of_ocaml"
+]
+conflicts: [
+  "async" {< "111.25.00"}
+  "lwt" {< "2.4.7"}
+]
+available: [ocaml-version >= "4.01.0"]
