@@ -1,0 +1,17 @@
+opam-version: "1"
+maintainer: "martin@lucina.net"
+homepage: "http://gmplib.org/"
+license: "GPL"
+build: [
+    [ "rumprun-bmk-configure" "./configure" "--prefix=%{ocaml-rumprun-prefix}%/lib/conf-gmp" "--disable-shared" ]
+    [ "rumprun-bmk-make" ]
+]
+install: [
+    [ "rumprun-bmk-make" "install" ]
+]
+remove: [
+    [ "rm" "-rf" "%{ocaml-rumprun-prefix}%/lib/conf-gmp/include" ]
+    [ "rm" "-rf" "%{ocaml-rumprun-prefix}%/lib/conf-gmp/lib" ]
+    [ "rm" "-rf" "%{ocaml-rumprun-prefix}%/lib/conf-gmp/share" ]
+]
+depends: [ "ocaml-rumprun" ]
