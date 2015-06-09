@@ -1,0 +1,13 @@
+diff -u a/Makefile.rules b/Makefile.rules
+--- a/Makefile.rules	2015-06-09 22:02:17.170585344 +0200
++++ b/Makefile.rules	2015-06-09 22:02:26.225585933 +0200
+@@ -55,8 +55,7 @@
+ LIB_TARGETS = $(BUILDDIR)/$(PROJECT).cma \
+               $(STUB_LIB) \
+               $(XEN_LIB) \
+-              $(BUILDDIR)/$(PROJECT).cmxa \
+-              $(BUILDDIR)/$(PROJECT).cmxs
++              $(BUILDDIR)/$(PROJECT).cmxa
+ LIB_TARGET_EXTRAS = $(if $(STUB_LIB),$(BUILDDIR)/lib$(PROJECT)_stubs.a) \
+                     $(if $(XEN_LIB),$(BUILDDIR)/lib$(PROJECT)_stubs_xen.a) \
+                     $(BUILDDIR)/$(PROJECT).a
