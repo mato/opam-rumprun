@@ -1,0 +1,22 @@
+commit ee421b7ac52aa56acd257b9f8fb2db2adc844113
+Author: Martin Lucina <martin@lucina.net>
+Date:   Thu May 21 14:19:51 2015 +0200
+
+    Don't check for dll library in setup.ml, not built
+    
+    This is a rumprun-specific hack needed until OASIS is patched to fix the
+    problem.
+
+diff --git a/setup.ml b/setup.ml
+index c0e22f3..05e0257 100644
+--- a/setup.ml
++++ b/setup.ml
+@@ -2185,8 +2185,6 @@ module OASISLibrary = struct
+         begin
+           ["lib"^cs.cs_name^"_stubs"^ext_lib]
+           ::
+-          ["dll"^cs.cs_name^"_stubs"^ext_dll]
+-          ::
+           acc_nopath
+         end
+       else

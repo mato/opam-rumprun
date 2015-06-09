@@ -4,6 +4,9 @@ maintainer: "martin@lucina.net"
 homepage:     "https://github.com/mirage/mirage-block-unix"
 dev-repo:     "https://github.com/mirage/mirage-block-unix.git"
 bug-reports:  "https://github.com/mirage/mirage-block-unix/issues"
+patches: [
+  "patches/oasis-dont-check-for-dlls.patch"
+]
 build: [
     ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--disable-tests" "--override" "native_dynlink" "false"]
     ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build" ]
