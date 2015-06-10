@@ -1,0 +1,36 @@
+opam-version: "1.2"
+homepage:     "https://github.com/mirleft/ocaml-tls"
+dev-repo:     "https://github.com/mirleft/ocaml-tls.git"
+bug-reports:  "https://github.com/mirleft/ocaml-tls/issues"
+author:       ["David Kaloper <david@numm.org>" "Hannes Mehnert <hannes@mehnert.org>"]
+maintainer:   ["Hannes Mehnert <hannes@mehnert.org>" "David Kaloper <david@numm.org>"]
+license:      "BSD2"
+
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--prefix" prefix
+    "--%{lwt-rumprun:enable}%-lwt"
+    "--%{mirage-types-rumprun+io-page-rumprun+ipaddr-rumprun:enable}%-mirage" ]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "tls"]
+
+depends: [
+  "ocamlfind"
+  "cstruct-rumprun" {>= "1.2.0"}
+  "type_conv-rumprun"
+  "sexplib-rumprun"
+  "nocrypto-rumprun" {>= "0.4.0"}
+  "x509-rumprun" {>= "0.3.0"}
+  "camlp4-rumprun"
+  "ocaml-rumprun"
+]
+depopts: [
+  "lwt-rumprun"
+  "mirage-types-lwt-rumprun"
+]
+conflicts: [
+  "lwt-rumprun" {<"2.4.8"}
+  "mirage-types-lwt-rumprun" {<"2.3.0"}
+]
+ocaml-version: [>="4.01.0"]
