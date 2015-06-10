@@ -1,0 +1,12 @@
+diff -u a/setup.ml b/setup.ml
+--- a/setup.ml	2015-06-10 13:25:36.067822252 +0200
++++ b/setup.ml	2015-06-10 13:25:56.363823571 +0200
+@@ -2185,8 +2185,6 @@
+         begin
+           ["lib"^cs.cs_name^"_stubs"^ext_lib]
+           ::
+-          ["dll"^cs.cs_name^"_stubs"^ext_dll]
+-          ::
+           acc_nopath
+         end
+       else

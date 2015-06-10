@@ -1,0 +1,54 @@
+opam-version: "1.2"
+homepage:     "https://github.com/mirleft/ocaml-nocrypto"
+dev-repo:     "https://github.com/mirleft/ocaml-nocrypto.git"
+bug-reports:  "https://github.com/mirleft/ocaml-nocrypto/issues"
+author:       "David Kaloper <david@numm.org>"
+maintainer:   "David Kaloper <david@numm.org>"
+license:      "BSD2"
+
+patches: [ "patches/oasis-dont-check-for-dlls.patch" ]
+# Cross-compilation notes (martin@lucina.net)
+# This particular build system is a total mess.
+# The following sequence of steps seems to work for cross-compiling:
+# 1. Build myocamlbuild plugin with host compiler.
+# 2. Run OASIS -configure with cross compiler.
+# 3. Build nocrypto_bindgen.byte with host compiler and run it.
+#    XXX: No feedback from nocrypto_bindgen on whether or not it succeeded.
+# 4. Run OASIS -build with cross compiler.
+# TODO: Verify that the above sequence does the right thing. The logical steps
+# (to me) are to let step 4 run nocrypto_bindgen, however for some unknown
+# reason it insists on *always* rebuilding nocrypto_bindgen with the cross
+# compiler.
+build: [
+  ["ocamlbuild" "-use-ocamlfind" "-just-plugin"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--prefix" prefix
+    "--%{lwt-rumprun:enable}%-lwt" ]
+  ["ocamlbuild" "-use-ocamlfind" "src_gen/nocrypto_bindgen.byte" ]
+  ["_build/src_gen/nocrypto_bindgen.byte"]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build" ]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+remove:  ["ocamlfind" "-toolchain" "rumprun" "remove" "nocrypto"]
+
+depends: [
+  "ocamlfind"
+  "cstruct-rumprun" {>= "1.4.0"}
+  "zarith-rumprun" {>= "1.3"}
+  "type_conv-rumprun"
+  "sexplib-rumprun"
+  "ctypes-rumprun" {>= "0.3.3"}
+  "ctypes" {>= "0.3.3"}
+#  ("mirage-no-xen" | ("mirage-xen" & "zarith-xen" & "mirage-entropy-xen"))
+]
+
+depopts: [
+  "lwt-rumprun"
+]
+
+#conflicts: [
+#  "mirage-xen" {<"2.2.0"}
+#  "mirage-entropy-xen" {<"0.3.0"}
+#]
+
+tags: [ "org:mirage"]
+available: [ ocaml-version >= "4.01.0" ]
