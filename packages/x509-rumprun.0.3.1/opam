@@ -1,0 +1,26 @@
+opam-version: "1.2"
+homepage:     "https://github.com/mirleft/ocaml-x509"
+dev-repo:     "https://github.com/mirleft/ocaml-x509.git"
+bug-reports:  "https://github.com/mirleft/ocaml-x509/issues"
+author:       [ "David Kaloper <david@numm.org>" "Hannes Mehnert <hannes@mehnert.org>" ]
+maintainer:   [ "Hannes Mehnert <hannes@mehnert.org>" "David Kaloper <david@numm.org>" ]
+license:      "BSD2"
+
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--prefix" prefix ]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "x509"]
+
+depends: [
+  "ocamlfind"
+  "cstruct-rumprun" {>= "1.2.0"}
+  "type_conv-rumprun"
+  "sexplib-rumprun"
+  "asn1-combinators-rumprun" {>= "0.1.1"}
+  "nocrypto-rumprun" {>= "0.2.0"}
+  "ocaml-rumprun"
+]
+tags: [ "org:mirage" ]
+available: [ ocaml-version >= "4.01.0" ]
