@@ -1,0 +1,23 @@
+opam-version: "1.2"
+homepage:     "https://github.com/mirleft/ocaml-asn1-combinators"
+dev-repo:     "https://github.com/mirleft/ocaml-asn1-combinators.git"
+bug-reports:  "https://github.com/mirleft/ocaml-asn1-combinators/issues"
+author:       "David Kaloper <david@numm.org>"
+maintainer:   "David Kaloper <david@numm.org>"
+license:      "BSD2"
+
+build: [
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-configure" "--prefix" prefix ]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-build"]
+]
+install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "ocaml" "setup.ml" "-install"]
+remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "asn1-combinators"]
+
+depends: [
+  "ocamlfind"
+  "cstruct-rumprun" {>= "1.2.0"}
+  "zarith-rumprun"
+  "ocaml-rumprun"
+]
+tags: [ "org:mirage" ]
+available: [ ocaml-version >= "4.01.0" ]
