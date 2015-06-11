@@ -1,5 +1,9 @@
 opam-version: "1"
 maintainer: "contact@ocamlpro.com"
+patches: [
+  "patches/zarith-configure-cross.patch"
+  "patches/zarith-makefile-noshared.patch"
+]
 build: [
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" "CC=rumprun-bmk-cc" "CPPFLAGS=-I%{ocaml-rumprun-prefix}%/lib/conf-gmp/include" "LDFLAGS=-L%{ocaml-rumprun-prefix}%/lib/conf-gmp/lib" "./configure"]
   ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
