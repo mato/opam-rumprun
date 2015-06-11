@@ -13,7 +13,7 @@ depends: [
   "mirage-types-lwt-rumprun" {>= "2.0.0"}
   "mirage-conduit-rumprun"
   "lwt-rumprun" {>= "2.4.3"}
-  "cohttp-rumprun" {>= "0.16.0" & < "0.18"}
+  "cohttp-rumprun" {>= "0.18"}
   "camlp4-rumprun"
   "sexplib-rumprun"
 ]
