@@ -31,4 +31,5 @@ depends: [
   "base-bytes"
   "type_conv-rumprun"
   "stringext-rumprun"
+  "ocaml-rumprun"
 ]

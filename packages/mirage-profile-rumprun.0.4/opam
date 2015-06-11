@@ -25,6 +25,7 @@ depends: [
   "ocplib-endian-rumprun"
   "io-page-rumprun"
   "lwt-rumprun"
+  "ocaml-rumprun"
 ]
 depopts: [
 	"mirage-xen-minios"

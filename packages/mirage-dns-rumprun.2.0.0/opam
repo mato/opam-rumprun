@@ -11,5 +11,6 @@ depends: [
   "mirage-types-lwt-rumprun" {>= "2.0.0"}
   "lwt-rumprun" {>= "2.4.3"}
   "cstruct-rumprun" {>= "1.0.0"}
+  "ocaml-rumprun"
 ]
 ocaml-version: [>= "4.01.0"]

@@ -16,5 +16,6 @@ depends: [
   "cohttp-rumprun" {>= "0.18"}
   "camlp4-rumprun"
   "sexplib-rumprun"
+  "ocaml-rumprun"
 ]
 available: [ocaml-version >= "4.00.0"]

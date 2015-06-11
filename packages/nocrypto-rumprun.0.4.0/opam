@@ -39,6 +39,7 @@ depends: [
   "ctypes-rumprun" {>= "0.3.3"}
   "ctypes" {>= "0.3.3"}
 #  ("mirage-no-xen" | ("mirage-xen" & "zarith-xen" & "mirage-entropy-xen"))
+  "ocaml-rumprun"
 ]
 
 depopts: [
