@@ -4,7 +4,11 @@ This OPAM repository contains:
 
 1. _ocaml-rumprun_, an OCaml 4.02 cross compiler for the
    [rumprun](http://repo.rumpkernel.org/rumprun) unikernel stack.
-2. _mirage_ packages which support rumprun as a target.
+2. _mirage_, a Mirage OS 2.5.0 package which supports rumprun as a target.
+3. ~25 and counting packages with their build systems fixed to support
+   cross-compliation. These packages are required by Mirage OS, but can of
+   course be used to build standalone OCaml applications running on top of
+   rumprun.
 
 *Experimental work in progress*, may eat your data or at least wreak havoc with
 your OPAM instrallation! Using a separate OPAM switch is recommended.
