@@ -1,0 +1,25 @@
+diff -ur ctypes.0.4.1/src/ctypes/posix_types_stubs.c ctypes-rumprun.0.4.1/src/ctypes/posix_types_stubs.c
+--- ctypes.0.4.1/src/ctypes/posix_types_stubs.c	2015-04-06 23:19:34.000000000 +0200
++++ ctypes-rumprun.0.4.1/src/ctypes/posix_types_stubs.c	2015-06-11 15:05:06.370101027 +0200
+@@ -56,6 +56,18 @@
+ #define EXPOSE_ALIGNMENT(X) EXPOSE_ALIGNMENT_COMMON(X, X)
+ #define EXPOSE_ALIGNMENT_S(X) EXPOSE_ALIGNMENT_COMMON(X, UNDERSCORE(X))
+ 
++#ifdef __NetBSD__
++/* NetBSD defines these types as macros, which expands to the wrong thing
++ * in the EXPOSE_* macros above. I have no idea how to prevent cpp from
++ * expanding macro arguments, so just hack around it for now. */
++#undef off_t
++#undef mode_t
++#undef pid_t
++typedef __off_t off_t;
++typedef __mode_t mode_t;
++typedef __pid_t pid_t;
++#endif
++
+ EXPOSE_TYPEINFO(clock_t)
+ EXPOSE_TYPEINFO_S(dev_t)
+ EXPOSE_TYPEINFO_S(ino_t)
+Only in ctypes-rumprun.0.4.1/src/ctypes: .posix_types_stubs.c.swp
+Only in ctypes-rumprun.0.4.1/src/ctypes: posix_types_stubs.o
+Only in ctypes-rumprun.0.4.1/src/ctypes: xx

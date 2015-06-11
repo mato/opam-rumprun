@@ -8,7 +8,8 @@ bug-reports: "http://github.com/ocamllabs/ocaml-ctypes/issues"
 license: "MIT"
 # Yet *another* handmade build system with no way to disable shared libs.
 patches: [
-  "patches/build-disable-cmxs.patch"
+  "patches/ctypes-build-disable-shared.patch"
+  "patches/ctypes-netbsd-fix-posix-types.patch"
 ]
 build: [
   [make "libffi-abigen" "configure"]

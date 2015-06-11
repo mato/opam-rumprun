@@ -1,6 +1,17 @@
-diff -u a/Makefile.rules b/Makefile.rules
---- a/Makefile.rules	2015-06-09 22:02:17.170585344 +0200
-+++ b/Makefile.rules	2015-06-09 22:02:26.225585933 +0200
+--- ctypes.0.4.1/Makefile.rules	2015-04-06 23:19:34.000000000 +0200
++++ ctypes-rumprun.0.4.1/Makefile.rules	2015-06-11 14:22:00.344932914 +0200
+@@ -11,9 +11,9 @@
+ endif
+ else
+ ifeq ($(DEBUG),false)
+-  CFLAGS=-fPIC -Wall -O3 $(OCAML_FFI_INCOPTS)
++  CFLAGS=-Wall -O3 $(OCAML_FFI_INCOPTS)
+ else
+-  CFLAGS=-fPIC -Wall -g $(OCAML_FFI_INCOPTS)
++  CFLAGS=-Wall -g $(OCAML_FFI_INCOPTS)
+ endif
+ endif
+ 
 @@ -55,8 +55,7 @@
  LIB_TARGETS = $(BUILDDIR)/$(PROJECT).cma \
                $(STUB_LIB) \
