@@ -4,6 +4,9 @@ patches: [
   "patches/0002-Add-crude-cross-compiling-support.patch"
 ]
 build: [
+  ["./build.sh"]
+]
+install: [
   ["./install.sh"]
 ]
 remove: [
