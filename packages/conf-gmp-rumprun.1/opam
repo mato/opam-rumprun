@@ -3,11 +3,11 @@ maintainer: "martin@lucina.net"
 homepage: "http://gmplib.org/"
 license: "GPL"
 build: [
-    [ "rumprun-bmk-configure" "./configure" "--prefix=%{ocaml-rumprun-prefix}%/lib/conf-gmp" "--disable-shared" ]
-    [ "rumprun-bmk-make" ]
+    [ "%{ocaml-rumprun-platform}%-configure" "./configure" "--prefix=%{ocaml-rumprun-prefix}%/lib/conf-gmp" "--disable-shared" ]
+    [ "%{ocaml-rumprun-platform}%-make" ]
 ]
 install: [
-    [ "rumprun-bmk-make" "install" ]
+    [ "%{ocaml-rumprun-platform}%-make" "install" ]
 ]
 remove: [
     [ "rm" "-rf" "%{ocaml-rumprun-prefix}%/lib/conf-gmp/include" ]
