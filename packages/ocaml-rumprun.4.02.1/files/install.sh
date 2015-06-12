@@ -45,4 +45,6 @@ chmod +x ${OPAM_BIN}/ocaml-rumprun-hostpackage
 # that gets overwritten by OPAM. so we abuse the global config instead.
 echo "ocaml-rumprun-prefix: \"${OPAM_PREFIX}/${RUMPRUN_PLATFORM}\"" \
     >>${OPAM_PREFIX}/config/global-config.config
-
+# And the same for `ocaml-rumprun-platform'.
+echo "ocaml-rumprun-platform: \"${RUMPRUN_PLATFORM}\"" \
+    >>${OPAM_PREFIX}/config/global-config.config
