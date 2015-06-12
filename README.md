@@ -20,27 +20,42 @@ your OPAM instrallation! Using a separate OPAM switch is recommended.
 
 * A Linux/x86 or Linux/x86\_64 machine to build on.
 * OCaml and [OPAM](https://opam.ocaml.org) installed.
-* A [rumprun](http://repo.rumpkernel.org/rumprun) toolchain, installed
-  according to the [instructions](http://wiki.rumpkernel.org/Repo%3A-rumprun)
-  and the `app-tools` directory added to your `$PATH`.
+
+*If you are using an x86_64 machine* to build: ensure that you are using a
+32-bit OCaml compiler matching the version of `ocaml-rumprun`. `opam switch
+4.02.1+32bit` should do the trick.
 
 Add this repository to your OPAM installation:
 ````
     opam repository add rumprun git://github.com/mato/opam-rumprun
 
 ````
+
 ## Build steps
 
-*If you are using an x86_64 machine* to build: ensure that you are using a
-32-bit OCaml compiler matching the version of `ocaml-rumprun`. `opam switch
-4.02.1+32bit` should do the trick.
+1. Build the [rumprun](http://repo.rumpkernel.org/rumprun) toolchain for the _hw_
+platform:
 
-Install the `ocaml-rumprun` package, specifying `RUMPRUN_PLATFORM` as either
+  *On an x86_64 machine*:
+
+  ````
+  ./build-rr.sh hw -- -F ACFLAGS=-m32 -F ACLFLAGS=-march=i686
+  ````
+
+  *On an x86 machine*:
+
+  ````
+  ./build-rr.sh hw
+  ````
+
+2. Add the `app-tools` directory added to your `$PATH`.
+
+3. Install the `ocaml-rumprun` package, specifying `RUMPRUN_PLATFORM` as either
 `rumprun-bmk` (baremetal / KVM / QEMU) or `rumprun-xen` (Xen):
-
-````
-    RUMPRUN_PLATFORM=rumprun-bmk opam install ocaml-rumprun
-````
+  
+  ````
+      RUMPRUN_PLATFORM=rumprun-bmk opam install ocaml-rumprun
+  ````
 
 # Example: Standalone OCaml
 
