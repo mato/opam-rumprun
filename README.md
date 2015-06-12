@@ -110,15 +110,37 @@ of the moon. YMWV.
 4. `rumpbake hw_virtio mir-www.bin mir-www`
 5. `rumprun kvm -i [network configuration...] ./mir-www.bin`
 
-## Mirage drivers ported to rumprun
+# Example: mirage-seal
 
-Currently the following Mirage drivers are ported and working on rumprun:
+*mirage-seal* is a tool that seals the contents of a directory into a static
+unikernel, serving its contents over HTTP(S).
 
-* Console
-* Clock
+To use mirage-seal on rumprun:
+
+Add an OPAM pin for the version with rumprun target support:
+
+````
+opam pin add mirage-seal git://github.com/mato/mirage-seal#rumprun
+
+````
+
+Put some HTML files in `files/`, and run:
+````
+mirage-seal -d files/ --no-tls --sockets -t rumprun
+
+````
+
+This will build `./mir-seal` which you can rumpbake and rumprun as appropriate.
+
+
+# Mirage status on rumprun
+
+Currently the following Mirage components are working on rumprun:
+
 * Block
-* STACKV4\_socket
-
-Conduit and HTTP support is present, TLS builds but has not been tested;
-feedback welcome.
+* Clock (However rumprun on KVM has no wall time at present)
+* Conduit
+* Console
+* STACKV4\_socket (The socket-based network stack)
+* TLS (Builds and links, but untested)
 
