@@ -50,8 +50,8 @@ platform:
 
 2. Add the `app-tools` directory added to your `$PATH`.
 
-3. Install the `ocaml-rumprun` package, specifying `RUMPRUN_PLATFORM` as either
-`rumprun-bmk` (baremetal / KVM / QEMU) or `rumprun-xen` (Xen):
+3. Install the `ocaml-rumprun` package, specifying `RUMPRUN_PLATFORM` either
+`rumprun-bmk` (baremetal / KVM / QEMU):
   
   ````
       RUMPRUN_PLATFORM=rumprun-bmk opam install ocaml-rumprun
