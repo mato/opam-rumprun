@@ -156,5 +156,7 @@ Currently the following MirageOS components are working on rumprun:
 * Conduit
 * Console
 * STACKV4\_socket (The socket-based network stack)
-* TLS (Builds and links, but untested)
 
+Work in progress:
+
+* TLS (Builds and links, but not operational yet)
