@@ -53,7 +53,7 @@ platform:
 
 2. Add the `app-tools` directory added to your `$PATH`.
 
-3. Install the `ocaml-rumprun` package, specifying `RUMPRUN_PLATFORM` either
+3. Install the `ocaml-rumprun` package, specifying a `RUMPRUN_PLATFORM` of
 `rumprun-bmk` (baremetal / KVM / QEMU):
   
   ````
