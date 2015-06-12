@@ -19,6 +19,7 @@ your OPAM instrallation! Using a separate OPAM switch is recommended.
 ## Prerequisites
 
 * A Linux/x86 or Linux/x86\_64 machine to build on.
+* QEMU (and optionally KVM) installed to run the built unikernels.
 * OCaml and [OPAM](https://opam.ocaml.org) installed.
 
 *If you are using an x86_64 machine* to build: ensure that you are using a
