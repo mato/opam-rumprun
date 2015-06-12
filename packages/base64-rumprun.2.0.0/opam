@@ -22,4 +22,5 @@ remove: [
 depends: [
   "ocamlfind"  {build}
   "base-bytes"
+  "ocaml-rumprun"
 ]
