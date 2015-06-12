@@ -42,6 +42,9 @@ platform:
   ./build-rr.sh hw -- -F ACFLAGS=-m32 -F ACLFLAGS=-march=i686
   ````
 
+  Depending on your Linux distribution, you may need the _gcc-multilib_ package
+  installed.
+
   *On an x86 machine*:
 
   ````
