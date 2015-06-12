@@ -4,9 +4,10 @@ This OPAM repository contains:
 
 1. _ocaml-rumprun_, an OCaml 4.02 cross compiler for the
    [rumprun](http://repo.rumpkernel.org/rumprun) unikernel stack.
-2. _mirage_, a Mirage OS 2.5.0 package which supports rumprun as a target.
+2. _mirage_, a [MirageOS](http://openmirage.org) package which supports rumprun
+   as a target.
 3. ~25 and counting packages with their build systems fixed to support
-   cross-compliation. These packages are required by Mirage OS, but can of
+   cross-compliation. These packages are required by MirageOS, but can of
    course be used to build standalone OCaml applications running on top of
    rumprun.
 
@@ -73,20 +74,32 @@ Run it using (for example) KVM (root may be required):
     rumprun kvm -i ./unixtime.bin
 ````
 
-# Example: Mirage OS on bare metal
+# Example: MirageOS on bare metal
+
+The following examples require that you install the MirageOS package:
+
+````
+    opam install mirage
+    (...)
+    ∗  installed mirage.2.5.0+rumprun
+    Done.
+
+````
+Verify that version _2.5.0+rumprun_ is installed.
+
+You will also need to clone the
+[mirage-skeleton](https://github.com/mirage/mirage-skeleton) repository and
+check out the _mirage-dev_ branch.
 
 ## "Hello, World"
 
-1. `opam install mirage`. Verify that version `2.5.0+rumprun` is installed.
-2. Clone the `https://github.com/mirage/mirage-skeleton` repository.
-3. Check out the _mirage-dev_ branch: `cd mirage-skeleton; git checkout mirage-dev`
-3. `cd console`
-4. `mirage configure --target rumprun`
-5. `make depend && make`
-6. `rumpbake hw_virtio mir-console.bin mir-console`
-7. `rumprun kvm -i ./mir-console.bin`
+1. `cd mirage-skeleton/console`
+2. `mirage configure --target rumprun`
+3. `make depend && make`
+4. `rumpbake hw_virtio mir-console.bin mir-console`
+5. `rumprun kvm -i ./mir-console.bin`
 
-## Mirage network stack example
+## MirageOS network stack example
 
 1. `cd mirage-skeleton/stackv4`
 2. `NET=socket mirage configure --target rumprun`
@@ -102,7 +115,7 @@ host-only tap0 network interface which can talk to the mirage unikernel:
 The exact syntax depends on your QEMU version, networking setup and the phase
 of the moon. YMWV.
 
-## Mirage static website example
+## MirageOS static website example
 
 1. `cd mirage-skeleton/static_website`
 2. `NET=socket mirage configure --target rumprun`
@@ -112,8 +125,9 @@ of the moon. YMWV.
 
 # Example: mirage-seal
 
-*mirage-seal* is a tool that seals the contents of a directory into a static
-unikernel, serving its contents over HTTP(S).
+[mirage-seal](https://github.com/mirage/mirage-seal) is a tool that seals the
+contents of a directory into a static unikernel, serving its contents over
+HTTP(S).
 
 To use mirage-seal on rumprun:
 
@@ -133,12 +147,12 @@ mirage-seal -d files/ --no-tls --sockets -t rumprun
 This will build `./mir-seal` which you can rumpbake and rumprun as appropriate.
 
 
-# Mirage status on rumprun
+# MirageOS status on rumprun
 
-Currently the following Mirage components are working on rumprun:
+Currently the following MirageOS components are working on rumprun:
 
 * Block
-* Clock (However rumprun on KVM has no wall time at present)
+* Clock (However rumprun on KVM/QEMU has no wall time at present)
 * Conduit
 * Console
 * STACKV4\_socket (The socket-based network stack)
