@@ -19,10 +19,10 @@ your OPAM instrallation! Using a separate OPAM switch is recommended.
 ## Prerequisites
 
 * A Linux/x86 or Linux/x86\_64 machine to build on.
-* OCaml and OPAM installed.
-* A rumprun toolchain, installed according to the
-  [instructions](http://wiki.rumpkernel.org/Repo%3A-rumprun) and the
-  `app-tools` directory on your `$PATH`.
+* OCaml and [OPAM](https://opam.ocaml.org) installed.
+* A [rumprun](http://repo.rumpkernel.org/rumprun) toolchain, installed
+  according to the [instructions](http://wiki.rumpkernel.org/Repo%3A-rumprun)
+  and the `app-tools` directory added to your `$PATH`.
 
 Add this repository to your OPAM installation:
 ````
