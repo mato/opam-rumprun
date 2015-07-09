@@ -10,7 +10,7 @@ if [ -z "${RUMPRUN_PLATFORM}" ]; then
     exit 1
 fi
 
-RUMPRUN_CC=${RUMPRUN_PLATFORM}-cc
+RUMPRUN_CC=${RUMPRUN_PLATFORM}-gcc
 if [ -z "$(command -v ${RUMPRUN_CC})" ]; then
     echo "ERROR: \`${RUMPRUN_CC}\' not found on PATH. Have you added the rumprun" 1>&2
     echo "ERROR: toolchain app-tools directory to your PATH?" 1>&2

@@ -27,7 +27,7 @@ if [ "${HOST_OCAML_VERSION}" != "${CROSS_OCAML_VERSION}" ]; then
     exit 1
 fi
 # Check if a 32-bit compiler is required.
-if ! [ echo "${RUMPRUN_PLATFORM}" | grep -q '^i.86-rumprun.*' ]; then
+if echo "${RUMPRUN_PLATFORM}" | grep -q '^i.86-rumprun.*'; then
     # XXX There should be a way to query the compiler bitness, rather than
     # relying on the compiler name.
     HOST_OCAML_COMPILER="$(opam config var compiler)"
