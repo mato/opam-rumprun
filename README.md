@@ -94,9 +94,16 @@ Run it using (for example) KVM (root may be required):
 
 # Example: MirageOS on bare metal
 
-The following examples require that you install the MirageOS package:
+The following examples require that you install the MirageOS package.
+
+*Please note:* The MirageOS package is currently on version `2.5.0+rumprun` as
+the rumprun-specific changes have not yet been upstreamed. You will need to pin
+your installation of Mirage to this specific version. *Using a separate OPAM
+switch is recommended.*
+
 
 ````
+    opam pin add mirage 2.5.0+rumprun
     opam install mirage
     (...)
     ∗  installed mirage.2.5.0+rumprun
