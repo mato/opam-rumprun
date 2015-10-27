@@ -52,9 +52,9 @@ platform:
   ./build-rr.sh hw
   ````
 
-2. Add the `app-tools` directory added to your `$PATH`.
+2. Add the `rumprun/bin` directory added to your `$PATH`.
 
-3. Install the `ocaml-rumprun` package, specifying a `RUMPRUN_PLATFORM` matching the rumprun toolchain you just built (look in the `app-tools` directory):
+3. Install the `ocaml-rumprun` package, specifying a `RUMPRUN_PLATFORM` matching the rumprun toolchain you just built (look in the `rumprun/bin` directory):
   
   ````
       RUMPRUN_PLATFORM=i486-rumprun-netbsdelf opam install ocaml-rumprun
