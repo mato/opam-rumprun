@@ -68,7 +68,7 @@ Build a native "Hello, World!":
 ````
     echo 'let () = print_endline "Hello, World!"' > hello.ml
     ocamlfind -toolchain rumprun ocamlopt hello.ml -o hello
-    rumpbake hw_virtio hello.bin hello
+    rumprun-bake hw_virtio hello.bin hello
 ````
 
 Run it using (for example) KVM (root may be required):
@@ -84,7 +84,7 @@ module and pthreads. A simple example:
 ````
     echo 'open Unix;; let () = print_endline (string_of_float (Unix.gettimeofday ()))' > unixtime.ml
     ocamlfind -toolchain rumprun ocamlopt -package unix -linkpkg unixtime.ml -o unixtime
-    rumpbake hw_virtio unixtime.bin unixtime
+    rumprun-bake hw_virtio unixtime.bin unixtime
 ````
 
 Run it using (for example) KVM (root may be required):
@@ -121,7 +121,7 @@ check out the _mirage-dev_ branch.
 1. `cd mirage-skeleton/console`
 2. `mirage configure --target rumprun`
 3. `make depend && make`
-4. `rumpbake hw_virtio mir-console.bin mir-console`
+4. `rumprun-bake hw_virtio mir-console.bin mir-console`
 5. `rumprun kvm -i ./mir-console.bin`
 
 ## MirageOS network stack example
@@ -129,7 +129,7 @@ check out the _mirage-dev_ branch.
 1. `cd mirage-skeleton/stackv4`
 2. `NET=socket mirage configure --target rumprun`
 3. `make depend && make`
-4. `rumpbake hw_virtio mir-stackv4.bin mir-stackv4`
+4. `rumprun-bake hw_virtio mir-stackv4.bin mir-stackv4`
 5. `rumprun kvm -i [network configuration...] ./mir-stackv4.bin`
 
 For the KVM network configuration, something like this will give you a
@@ -145,7 +145,7 @@ of the moon. YMWV.
 1. `cd mirage-skeleton/static_website`
 2. `NET=socket mirage configure --target rumprun`
 3. `make depend && make`
-4. `rumpbake hw_virtio mir-www.bin mir-www`
+4. `rumprun-bake hw_virtio mir-www.bin mir-www`
 5. `rumprun kvm -i [network configuration...] ./mir-www.bin`
 
 # Example: mirage-seal
