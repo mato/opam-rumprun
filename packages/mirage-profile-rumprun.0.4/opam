@@ -10,12 +10,12 @@ patches: [
   "patches/oasis-dont-check-for-dlls.patch"
 ]
 build: [
-	[ "env" "OCAMLFIND_TOOLCHAIN=rumprun"
-          "./configure"
-	  "--prefix" prefix
-	  "--%{mirage-xen-minios:enable}%-xen"
-	]
-	["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
+  [ "env" "OCAMLFIND_TOOLCHAIN=rumprun"
+    "./configure"
+      "--prefix" prefix
+      "--%{mirage-xen-minios:enable}%-xen"
+  ]
+  ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make]
 ]
 install: ["env" "OCAMLFIND_TOOLCHAIN=rumprun" make "install"]
 remove: ["ocamlfind" "-toolchain" "rumprun" "remove" "mirage-profile"]
@@ -28,5 +28,5 @@ depends: [
   "ocaml-rumprun"
 ]
 depopts: [
-	"mirage-xen-minios"
+  "mirage-xen-minios"
 ]
