@@ -31,5 +31,6 @@ depends: [
 #  "mirage-net-unix-rumprun" {>= "1.1.0"}
   "ipaddr-rumprun" {>= "2.2.0"}
   "ocaml-rumprun"
+  "mirage-profile-rumprun"
 ]
 available: [ocaml-version >= "4.01.0"]
