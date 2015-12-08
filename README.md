@@ -15,7 +15,8 @@ This OPAM repository contains:
 your OPAM instrallation! Using a separate OPAM switch is recommended.
 
 For detailed technical documentation of this work, and current status of
-upstreaming the Mirage/Rumprun port, please see mirage/mirage#479.
+upstreaming the Mirage/Rumprun port, please see
+[mirage/mirage#479](https://github.com/mirage/mirage/issues/479).
 
 # Building the ocaml-rumprun cross compiler
 
